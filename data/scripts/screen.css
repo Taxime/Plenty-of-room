@@ -1,0 +1,9 @@
+button[choisi=true]{
+	background-color: orange;
+}
+button[choisi=false]{
+	background-color: lightgreen;
+}
+li{
+	list-style: none;
+}
