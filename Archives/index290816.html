@@ -1,0 +1,186 @@
+<!-- v290816 = corriger les conflits dessin/texte/image
+sketchpad -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <script src="js/jQuery v2.2.4.js"></script>
+  <script src="js/por020916"></script>
+     <script src="js/d3.js"></script>
+   <script src="js/simplify.js"></script>
+  <style>
+  #tempLine svg{
+    width:100%;
+    height: 100%;
+position: absolute;
+  }
+  img,iframe{
+    width:100%;
+    height: 100%;
+    position: absolute;
+  }
+  p{
+     position: absolute;
+  }
+svg{
+    position: absolute;
+  }
+    .circleBase {
+    position: absolute;
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+}
+
+.type1 {
+    width: 18px;
+    height: 18px;
+    background: pink;
+}
+  #drawPreview{
+    position: absolute;
+  }
+  .input{
+    color:rgb(72,72,72);
+
+  }
+    .input:hover{
+
+background-color: aliceblue;
+  }
+  img:hover{
+border-style: solid;
+border-color: aliceblue;
+border-width: 1px;
+background-color: aliceblue;
+  }
+  #getting{
+    position: fixed;
+  }
+  #sending{
+    position: fixed;
+  }
+    #sketch{
+
+      position: fixed;
+    }
+    #gui{
+      position: fixed;
+    }
+    #preview{
+      position: fixed;
+display: inline-block;
+border-style: solid;
+border-color: lightblue;
+border-width: 1px;
+            opacity: 0.5;
+    }
+    #cmd{
+      position: fixed;
+      
+      opacity: 0.75;
+     padding: 1em;
+      font-size: 2em;
+
+      width: 100%;
+      height: 100%;
+    }
+    ul{
+      margin:0;
+      padding:0;
+    }
+    body,html,section{
+      margin: 0;
+
+
+    }
+    html{
+          width:100%;
+    height: 100%;
+      font-family: consolas;
+    }
+    body{
+          width:100%;
+    height: 100%;
+     overflow: hidden;
+     
+   }
+   #dev{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+   }
+   iframe{
+  }
+  red{
+    color:red;
+  }
+  blue{
+    color:blue;
+  }
+   green{
+    color:green;
+  }
+    yellow{
+    color:yellow;
+  }
+      gold{
+    color:gold;
+  }  red{
+    color:red;
+  }
+  cursive{
+    font-family: cursive;
+  }
+   sans{
+    font-family:sans-serif;
+  }
+    serif{
+    font-family:serif;
+  }
+      impact{
+    font-family:impact;
+  }
+  textarea{
+font-family: consolas;
+  }
+button {
+  background-color:aliceblue;
+  border:1px solid lightblue;
+  display:inline-block;
+  cursor:pointer;
+  opacity: 0.75
+}
+button:hover {
+  background-color:lavender;
+}
+button:active {
+  position:relative;
+  top:1px;
+}
+</style>
+</head>
+<body onload="setup()">
+  <span id="sending"></span>
+  <span id="getting"></span>
+  <section id="dev"></section>
+  <span id ="tempLine">
+</span>
+    <div id="pointer" class="circleBase type1"></div>
+  <section id="sketch"></section>
+  <section id="gui">
+
+  <footer style="margin:25px;position: fixed;display:inline-block;width:800px;bottom: 0;">
+</footer>
+
+<span id ="tempLine">
+</span>
+
+
+  </section>
+  <script type="text/javascript">
+  
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+
+</head>
+<body onload="pgcd()">
+   <script type="text/javascript">
+function pgcd(a,b){
+	while (a!=b){
+	if (a>b){ a-=b }
+	else {b-=a};
+	}
+	return a;
+}
+ 
+ 
+do {a=prompt("a=") } while(isNaN(a));
+do {b=prompt("b=") } while(isNaN(b));
+ 
+x=pgcd(a,b);
+ 
+document.write("Le PGCD de "+a+" et "+b+" = "+x+", ");
+ a=a/x;
+ b=b/x;
+ document.write(a+"/"+b);
+</script>
+</body>
+</html>

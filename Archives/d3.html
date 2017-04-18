@@ -1,0 +1,157 @@
+<!--v230816= dessin -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <script src="js/jQuery v2.2.4.js"></script>
+   <script src="js/d3.js"></script>
+   <script src="js/simplify.js"></script>
+  <style>
+  html,body,svg{width:100%;
+    height: 100%;
+position: absolute;
+  }
+  #option{
+    position: absolute;
+  }
+  .circleBase {
+    position: absolute;
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+}
+
+.type1 {
+    width: 32px;
+    height: 32px;
+    background: pink;
+}
+  </style>
+  </head>
+<body>
+<div id="option">
+    <input name="updateButton" 
+           type="button" 
+           value="Update" 
+           onclick="updateData()" />
+</div>
+
+<span id ="sketch">
+</span>
+<span id ="tempLine">
+</span>
+<div id="pointer" class="circleBase type1"></div>
+<!-- load the d3.js library -->     
+<script type="text/javascript">
+ var mouse={x:undefined,y:undefined};
+ var ismousedown=false;
+//The data for our line
+var lineA = [];
+var lineB = [];
+var posW=32;
+var a=0;
+ document.onmousemove = function(event) {
+      if ( event.pageX == null && event.clientX != null ) {
+        var doc = document.documentElement, body = document.body;
+        event.pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+        event.pageY = event.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) - (doc   && doc.clientTop  || body && body.clientTop  || 0);
+      }
+      mouse.x=event.pageX;
+      mouse.y=event.pageY;
+      if(ismousedown){
+var point={ "x":mouse.x,   "y": mouse.y};
+var rdm= Math.random();
+   lineB.push(point);
+   lineA.push(point);
+   drawline(lineB,posW,"#tempLine");
+lineB=[];
+lineB.push(point);
+    }
+    document.getElementById("pointer").style.marginLeft=mouse.x-16+"px";
+    document.getElementById("pointer").style.marginTop=mouse.y-16+"px";
+/////////////////
+};
+ document.onmousedown = function(event) {
+  ismousedown=true;
+  }
+ document.onmouseup = function(event) {
+   ismousedown=false;
+   drawline(lineA,posW,"#sketch");
+   lineA=[];
+   lineB=[];
+   document.getElementById("tempLine").innerHTML='';
+ }
+
+function drawline(data,w,where){
+
+
+  if(where=="#sketch"){
+    simpleData=simplify(data, 5, false);
+    var base= data.length;
+    var result= simpleData.length;
+    var percent=(result/base)*100;
+  console.log(data.length);
+ console.log(simpleData.length);
+ console.log(100-percent+'%');
+lineData=simpleData;
+ }else{
+  lineData=data;
+ }
+
+   
+//This is the accessor function we talked about above
+var lineFunction = d3.line()
+                         .x(function(d) { return d.x; })
+                         .y(function(d) { return d.y; })
+                         .curve(d3.curveCatmullRom.alpha(0.5));
+//The SVG Container
+var svgContainer = d3.select(where).append("svg");
+                    
+//The line SVG Path we draw
+ if(where=="#sketch"){
+var lineGraph = svgContainer.append("path")
+                            .attr("id", "line")
+                            .attr("d", lineFunction(lineData))
+                            .attr("stroke", "blue")
+                            .attr("stroke-width", w)
+                            .attr("stroke-linecap","round")
+                            .attr("fill", "none");
+                          }else{
+var lineGraph = svgContainer.append("path")
+                            .attr("id", "line")
+                            .attr("d", lineFunction(lineData))
+                            .attr("stroke", "pink")
+                            .attr("stroke-width", w)
+                            .attr("stroke-linecap","round")
+                            .attr("fill", "none");
+                          }
+// ** Update data section (Called from the onclick)
+}
+function updateData() {
+
+//The data for our line
+var lineData = [ { "x": 2+8,   "y": 10+8},  { "x": 40+8,  "y": 40+8},
+                 { "x": 80+8,  "y": 20+8}, { "x": 120+8,  "y": 80+8},
+                 { "x": 100+8,  "y": 10+8},  { "x": 300+8, "y": 120+8}];
+
+
+      // Scale the range of the data again 
+      var lineFunction = d3.line()
+                          .x(function(d) { return d.x; })
+                         .y(function(d) { return d.y; })
+                        .curve(d3.curveBundle.beta(1));
+
+    // Select the section we want to apply our changes to
+    var svg = d3.select("#sketch");
+document.getElementById("hello").style.width=400+"px";
+    // Make the changes
+        svg.select("#line")   // change the line
+            .attr("d",lineFunction(lineData));
+
+    
+}
+
+
+</script>
+</body>
+</html>

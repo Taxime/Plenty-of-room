@@ -1,0 +1,342 @@
+<!-- v120916 : Camera RTS
+sketchpad -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <script src="js/jQuery v2.2.4.js"></script>
+  <script src="js/por160912.js"></script>
+     <script src="js/d3.js"></script>
+   <script src="js/simplify.js"></script>
+  <style>
+  #tempLine svg{
+    width:100%;
+    height: 100%;
+position: absolute;
+  }
+  img,iframe{
+    width:100%;
+    position: absolute;
+  }
+  p{
+     position: absolute;
+  }
+svg{
+    position: absolute;
+  }
+    .circleBase {
+    position: absolute;
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+}
+
+.type1 {
+    background: pink;
+}
+  #drawPreview{
+    position: absolute;
+  }
+  .input{
+    
+
+  }
+    .input:hover{
+opacity: 0.5;
+background-color: aliceblue;
+  }
+  img:hover{
+border-style: solid;
+border-color: aliceblue;
+border-width: 1px;
+background-color: aliceblue;
+  }
+  #getting{
+    position: fixed;
+  }
+  #sending{
+    position: fixed;
+  }
+    #sketch{
+
+      position: fixed;
+    }
+    #gui{
+      position: fixed;
+    }
+    #preview{
+      background-color: aliceblue;
+      position: fixed;
+display: inline-block;
+border-style: solid;
+border-color: lightblue;
+border-width: 1px;
+            opacity: 0.25;
+            width: auto;
+            height: auto;
+    }
+    #cmd{
+      position: fixed;
+      font-size: 2em;
+      opacity: 0.75;
+     padding: 2em;
+height: 95%;
+      width: 95%;
+    }
+    ul{
+      margin:0;
+      padding:0;
+    }
+    textarea{
+      background-color: transparent;
+       border: none; 
+       outline: none;
+  }
+
+    body,html,section{
+      margin: 0;
+
+
+    }
+    #overlay{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0px 0px 64px 48px rgb(255,255,255) inset;
+      pointer-events: none;
+
+    }
+    html{
+          width:100%;
+    height: 100%;
+      font-family: consolas;
+    }
+    body{
+          width:100%;
+    height: 100%;
+     overflow: hidden;
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: bottom;
+
+   }
+   #dev{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+   }
+    #rotate_left{
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90);
+  }
+  #rotate_right{
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90);
+  }
+  #rotate_diag_left{
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45);
+  }
+  #rotate_diag_right{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45);
+  }
+  #rotate_upside{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180);
+  }
+  
+   iframe{
+  }
+  white{
+    color:white;
+  }
+  black{
+    color:black;
+  }
+  red{
+    color:red;
+  }
+  blue{
+    color:blue;
+  }
+   green{
+    color:green;
+  }
+    yellow{
+    color:yellow;
+  }
+    grey{
+    color:grey;
+  }
+      silver{
+    color:silver;
+  }
+      gold{
+    color:gold;
+  }  red{
+    color:red;
+  }
+  cursive{
+    font-family: cursive;
+  }
+
+   sans{
+    font-family:sans-serif;
+  }
+    serif{
+    font-family:serif;
+  }
+      impact{
+    font-family:impact;
+  }
+  textarea{
+font-family: consolas;
+  }
+button {
+
+  border : none;
+outline: none;
+  color: white;
+  background-color:lightgrey;
+  display:inline-block;
+  cursor:pointer;
+ 
+
+}
+button:hover {
+    background-color:darkgrey;
+
+}
+button:active {
+  position:relative;
+  top:1px;
+}
+#echelle{
+
+  position: absolute;
+opacity: 0.33;
+  margin-top: -96px;
+  margin-left: 48px;
+  font-size: 9pt;
+width: 1cm;
+height: 0.25cm;
+border-bottom-style: solid;
+border-right-style: solid;
+border-left-style: solid;
+border-width: 1px;
+
+}
+#composition{
+  margin-top: -84px;
+    font-size: 9pt;
+height: 0.25cm;
+  position: absolute;
+opacity: 0.33;
+width: calc(100% - 36px);
+  text-align: right;
+  height: 
+}
+#zoom{
+  position: absolute;
+top: 64px;
+  right: 64px;
+  height: 64px;
+   width: 32px;
+   opacity: 0.55;
+ border-color: white;
+   border-bottom-style: solid;
+}
+#dezoom{
+   border-color: white;
+   border-top-style: solid;
+
+  position: absolute;
+top: 128px;
+  right: 64px;
+    height: 64px;
+      width: 32px;
+      opacity: 0.55;
+}
+.bord{
+  opacity: 0.10;
+}
+.bord:hover{
+  opacity: 0.12;
+}
+#droit{
+  position: absolute;
+  height: calc(100% - 96px);
+
+  width: 48px;
+  margin-top: 48px;
+  right: 0;
+}
+#gauche{
+  position: absolute;
+  height: calc(100% - 96px);
+  width: 48px;
+  margin-top: 48px;
+  left: 0;
+}
+#haut{
+  position: absolute;
+  height: 48px;
+  width: calc(100% - 96px);
+  margin-left: 48px;
+top: 0;
+}
+#bas{
+  position: absolute;
+  height: 48px;
+  width: calc(100% - 96px);
+  margin-left: 48px;
+bottom: 0;
+}
+#coinHautGauche{
+  position: absolute;
+  height: 64px;
+  width: calc(100% - 128px);
+  margin-left: 64px;
+bottom: 0;
+}
+
+</style>
+</head>
+<body id="doc" onload="setup()">
+  <span id="sending"></span>
+  <span id="getting"></span>
+  
+  <span id ="tempLine">
+</span>
+    <div id="pointer" class="circleBase type1"></div>
+      <section id="dev"></section>
+     
+  <section id="sketch"></section>
+  <div id=overlay></div>
+  <section id="gui">
+
+  <footer style="margin:25px;position: fixed;display:inline-block;width:97%;bottom: 0;">
+   <div id ="echelle"></div>
+   <div id ="composition"></div>
+</footer>
+
+<span id ="tempLine">
+</span>
+
+
+
+
+  </section>
+     <button  id="zoom" onmousedown="camera(34,true)" onmouseup="camera(34,false)"onmouseout="camera(34,false)"><h2 style="font-weight: normal;">+</h2></button>
+<button id="dezoom" onmousedown="camera(33,true)" onmouseup="camera(33,false)"onmouseout="camera(33,false)"><h2 style="font-weight: normal;">-</h2></button>
+<button class="bord" id="droit" onmouseover="camera(37,true)" onmouseup="camera(37,false)"onmouseout="camera(37,false)"><h1 style="font-weight: normal;"></h1></button>
+<button class="bord" id="gauche" onmouseover="camera(39,true)" onmouseup="camera(39,false)"onmouseout="camera(39,false)"><h1 style="font-weight: normal;"></h1></button>
+<button class="bord" id="haut" onmouseover="camera(40,true);" onmouseup="camera(40,false)"onmouseout="camera(40,false)"><h1 style="font-weight: normal;"></h1></button>
+<button class="bord" id="bas" button onmouseover="camera(38,true)" onmouseup="camera(38,false)"onmouseout="camera(38,false)"><h1 style="font-weight: normal;"></h1></button>
+  <script type="text/javascript">
+  
+  </script>
+
+</body>
+</html>

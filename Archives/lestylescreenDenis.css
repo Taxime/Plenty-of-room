@@ -1,0 +1,291 @@
+
+#tempLine svg{
+    width:100%;
+    height: 100%;
+position: absolute;
+  }
+  img,iframe{
+    width:100%;
+    position: absolute;
+  }
+  img:hover{
+cursor: pointer;
+
+  }
+  p{
+     position: absolute;
+  }
+svg{
+    position: absolute;
+  }
+    .circleBase {
+    position: absolute;
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+}
+#screen{
+  visibility: visible;
+}
+#print{
+display: none;
+}
+.type1 {
+    background: pink;
+}
+  #drawPreview{
+    position: absolute;
+  }
+
+    .input:hover{
+
+  }
+/*  img:hover{
+border-style: solid;
+border-color: aliceblue;
+border-width: 1px;
+background-color: aliceblue;
+  }*/
+  #getting{
+    position: fixed;
+  }
+  #sending{
+    position: fixed;
+  }
+    #sketch{
+
+      position: fixed;
+    }
+    #gui{
+      position: fixed;
+    }
+    #preview{
+      background-color: aliceblue;
+      position: fixed;
+display: inline-block;
+border-style: solid;
+border-color: lightblue;
+border-width: 1px;
+            opacity: 0.25;
+            width: auto;
+            height: auto;
+    }
+    #cmd{
+      position: fixed;
+      font-size: 1.5em;
+      opacity: 0.75;
+     padding: 3em;
+height: 95%;
+      width: 95%;
+    }
+    ul{
+      margin:0;
+      padding:0;
+    }
+    textarea{
+      background-color: transparent;
+       border: none; 
+       outline: none;
+  }
+
+
+    body,html,section{
+      margin: 0;
+-moz-font-feature-settings: "liga=1";
+-ms-font-feature-settings: "liga";
+-webkit-font-feature-settings: "liga";
+-o-font-feature-settings: "liga";
+font-feature-settings: "liga";
+
+    }
+    #overlay{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0px 0px 64px 48px rgb(255,255,255) inset;
+      pointer-events: none;
+
+    }
+    html{
+          width:100%;
+    height: 100%;
+      font-family: consolas;
+    }
+    body{
+          width:100%;
+    height: 100%;
+     overflow: hidden;
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: bottom;
+
+   }
+   #dev{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+   }
+    #rotate_left{
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90);
+  }
+  #rotate_right{
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90);
+  }
+  #rotate_diag_left{
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45);
+  }
+  #rotate_diag_right{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45);
+  }
+  #rotate_upside{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180);
+  }
+  
+  uppercase{
+    text-transform: uppercase;
+  }
+ underline{
+    text-decoration: underline;
+  }
+  white{
+    color:white;
+  }
+  rature{
+    text-decoration: line-through;
+  }
+  black{
+    color:black;
+  }
+  red{
+    color:red;
+  }
+  blue{
+    color:blue;
+  }
+   green{
+    color:green;
+  }
+    yellow{
+    color:yellow;
+  }
+    grey{
+    color:grey;
+  }
+      silver{
+    color:silver;
+  }
+      gold{
+    color:gold;
+  }  red{
+    color:red;
+  }
+  cursive{
+    font-family: cursive;
+  }
+
+   sans{
+    font-family:sans-serif;
+  }
+    serif{
+    font-family:serif;
+  }
+      impact{
+    font-family:impact;
+  }
+  textarea{
+font-family: consolas;
+  }
+button {
+
+  border : none;
+outline: none;
+  color: white;
+  background-color:lightgrey;
+  display:inline-block;
+  cursor:pointer;
+ 
+
+}
+button:hover {
+    background-color:darkgrey;
+
+}
+button:active {
+  position:relative;
+  top:1px;
+}
+#echelle{
+
+
+}
+#composition{
+  margin-top: -84px;
+    font-size: 9pt;
+height: 0.25cm;
+  position: absolute;
+opacity: 0.33;
+width: calc(100% - 36px);
+  text-align: right;
+  height: 
+}
+#zoom{
+  position: absolute;
+top: 64px;
+  right: 64px;
+  height: 64px;
+   width: 32px;
+
+   border-bottom-style: solid;
+}
+#dezoom{
+
+  position: absolute;
+top: 128px;
+  right: 64px;
+    height: 64px;
+      width: 32px;
+}
+.bord{
+  opacity: 0;
+}
+
+#droit{
+  position: absolute;
+  height: calc(100% - 96px);
+
+  width: 48px;
+  margin-top: 48px;
+  right: 0;
+}
+#gauche{
+  position: absolute;
+  height: calc(100% - 96px);
+  width: 48px;
+  margin-top: 48px;
+  left: 0;
+}
+#haut{
+  position: absolute;
+  height: 48px;
+  width: calc(100% - 96px);
+  margin-left: 48px;
+top: 0;
+}
+#bas{
+  position: absolute;
+  height: 48px;
+  width: calc(100% - 96px);
+  margin-left: 48px;
+bottom: 0;
+}
+#coinHautGauche{
+  position: absolute;
+  height: 64px;
+  width: calc(100% - 128px);
+  margin-left: 64px;
+bottom: 0;
+}

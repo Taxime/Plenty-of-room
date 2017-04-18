@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <script src="js/jQuery v2.2.4.js"></script>
+  <style>
+    #sketch{
+      position: absolute;
+    }
+    #gui{
+      position: fixed;
+    }
+    #cmd{
+      opacity: 0;
+    }
+    body,html,section{
+      margin: 0;
+      width: 100%;
+
+    }
+    body{
+      overflow:hidden;
+    }
+    iframe{
+      width: 100%;
+      height: 10000px;
+    }
+    textarea{
+      background-color: transparent;
+    }
+  </style>
+</head>
+<body onload="setup()">
+<span id="toSend">
+</span>
+  <section id="sketch">
+
+
+
+
+
+
+  </section>
+  <section id="gui">
+
+
+
+
+
+
+  </section>
+  <script type="text/javascript">
+    /*interface*/
+    var mouse={x:undefined,y:undefined};
+    /* DATA */
+    //var elements=0;
+    var points={x:0,y:0,z:0};
+    /////////////////////////////////////
+    function save(name,content){
+          $.ajax({ url: 'save.php',
+       data: { name : name, content:content },
+       type: 'post',
+       datatype : 'html',
+       success: function(data) {
+   console.log("php "+data); // apple
+ }
+});
+          }
+              function load(name){
+          $.ajax({ url: 'load.php',
+       data: { name : name},
+       type: 'GET',
+       datatype : 'html',
+       success: function(data) {
+   console.log("php "+data); // apple
+   document.getElementById("sketch").innerHTML=data;
+ }
+});
+          }
+/////////////////////////////////////////
+function drawCmd(){
+
+  var element=document.getElementById("gui").style;
+  element.marginLeft=mouse.x+20+"px";
+  element.marginTop=mouse.y+"px";
+}
+function drawPreview(){
+
+  var elementContent = document.createTextNode(document.getElementById("cmd").value);
+  var str =document.getElementById("cmd").value;
+  if(str[0]=='!'){
+    var newStr = str.substr(1, str.length);
+    console.log(newStr);
+    var jpg = newStr.includes(".jpg");
+    var png = newStr.includes(".png");
+    var gif = newStr.includes(".gif");
+    if (jpg==true||png==true||gif==true) {
+      str="<img src=\""+newStr+"\">";
+    }
+  //https://www.youtube.com/watch?v=kRPndPQaU0M&index=2&list=RDMMZUKDRmpczxE
+  //https://www.youtube.com/embed/kRPndPQaU0M
+  if (newStr.includes(".youtube.")) {
+    if(newStr.includes("&list=")){
+     newStr =  newStr.substring(0, newStr.indexOf("&list="));
+   }
+
+   if(newStr.includes("&index=")){
+     newStr =  newStr.substring(0, newStr.indexOf("&index="));
+   }
+   var newStr = newStr.replace("watch?v=","embed/");
+
+
+   str="<iframe width=\"560\" height=\"315\" src=\""+newStr+"\" frameborder=\"0\" allowfullscreen></iframe>";
+ }
+}
+//https://www.youtube.com/embed/djfEaX2tA7M
+document.getElementById("preview").innerHTML=str;
+}
+///////////////////////////////////////
+function setup(){
+  load("data");
+  console.log("hello");
+  setInterval(draw, 17 );
+////////////////////////////////////
+var preview = document.createElement("span");
+preview.id = "preview";
+document.getElementById("gui").appendChild(preview);
+var br = document.createElement("br");
+document.getElementById("gui").appendChild(br);
+var cmd = document.createElement("textarea");
+cmd.id = "cmd";
+document.getElementById("gui").appendChild(cmd);
+}
+////////////////////////////////////
+function draw(){
+}
+      ////////////////////////////////
+      document.onmousemove = function(event) { 
+        mouse.x=event.x;
+        mouse.y=event.y;
+/////////////////
+drawCmd();
+};
+document.onmousedown=function(event){
+  //elements++;
+  var element = document.createElement("span");
+  element.style.position="absolute";
+  element.style.marginLeft=document.getElementById("gui").style.marginLeft;
+  element.style.marginTop=document.getElementById("gui").style.marginTop;
+  var rdm=Math.random();
+  element.id=rdm;
+  document.getElementById("sketch").appendChild(element);
+
+  document.getElementById(rdm).innerHTML=document.getElementById("preview").innerHTML;
+  /////////
+var element = document.createElement("span");
+  element.style.position="absolute";
+  element.style.marginLeft=document.getElementById("gui").style.marginLeft;
+  element.style.marginTop=document.getElementById("gui").style.marginTop;
+ var rdm=Math.random();
+  element.id=rdm;
+  document.getElementById("toSend").appendChild(element);
+  document.getElementById(rdm).innerHTML=document.getElementById("preview").innerHTML;
+  //////
+    document.getElementById("cmd").value='';
+  drawPreview();
+  save("data",document.getElementById("toSend").innerHTML);
+  document.getElementById("toSend").innerHTML='';
+}
+document.onmouseup=function(event){
+  
+}
+        //////////////////////////
+        var keys=[];
+        var combo ='';
+        document.onkeydown = function(e){
+         e = e || window.event;
+         var key = e.which || e.keyCode;
+         keys.push(key);
+
+         
+         combo+=keys[keys.length-1];
+         var comboEtat=combo.includes("1767");
+         console.log(comboEtat);
+         if(key != 17 && comboEtat==false){
+          document.getElementById("cmd").focus();
+        }
+        if(key==13){
+         document.getElementById("cmd").value+="<br>";
+         console.log( document.getElementById("cmd").value);
+       }
+       drawPreview();
+       if(keys.length>2){
+        keys=[];
+        combo='';
+      }
+    }
+    document.onkeyup = function(e){
+      drawPreview();
+    }
+  </script>
+
+</body>
+</html>
+<!--window.onload = function() {
+    try{
+        document.getElementById('myAnchor').focus();
+        console.log(document.getElementById('myAnchor').focus());
+    }catch(err){
+console.log(err);
+    }                    
+}-->

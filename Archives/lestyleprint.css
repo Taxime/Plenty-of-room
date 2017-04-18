@@ -1,0 +1,100 @@
+
+
+body{
+		width: 210mm;
+	height: 297mm;
+	font-family: consolas;
+}
+#print{
+	visibility: visible;
+}
+.toPrint{
+    background-color: yellow;
+}
+.output{
+
+	page-break-after: always;
+}
+#screen{
+	display: none;
+}
+
+
+
+
+  #rotate_left{
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90);
+  }
+  #rotate_right{
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90);
+  }
+  #rotate_diag_left{
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45);
+  }
+  #rotate_diag_right{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45);
+  }
+  #rotate_upside{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180);
+  }
+  
+  uppercase{
+    text-transform: uppercase;
+  }
+ underline{
+    text-decoration: underline;
+  }
+  white{
+    color:white;
+  }
+  rature{
+    text-decoration: line-through;
+  }
+  black{
+    color:black;
+  }
+  red{
+    color:red;
+  }
+  blue{
+    color:blue;
+  }
+   green{
+    color:green;
+  }
+    yellow{
+    color:yellow;
+  }
+    grey{
+    color:grey;
+  }
+      silver{
+    color:silver;
+  }
+      gold{
+    color:gold;
+  }  red{
+    color:red;
+  }
+  cursive{
+    font-family: cursive;
+  }
+
+   sans{
+    font-family:sans-serif;
+  }
+    serif{
+    font-family:serif;
+  }
+      impact{
+    font-family:impact;
+  }
+/* top doit etre tous les multiples de 297mm
+   left doit être 0
+   paddingleft et paddingright doivent jouer avec la width (-webkit-calc(100% - paddingtop+paddingbottom px))
+   paddingtop et paddingbottom doivent jouer avec la width (-webkit-calc(100% - paddingtop+paddingbottom px))

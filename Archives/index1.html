@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/jQuery v2.2.4.js"></script>
+</head>
+<body id="caca" onload="setup()">
+  <script>
+        var i = 0;
+              var name = "user10";
+      var content = "1";
+    function setup(){
+      setInterval(draw, 17 );
+
+
+
+    }
+
+    function draw(){
+      if(i<10){
+  console.log("js "+i);
+      $.ajax({ url: 'http://localhost/plenty_of_room/save.php',
+       data: { name : name, content:content, i:i },
+       type: 'post',
+       success: function(data) {
+   console.log("php "+data); // apple
+ }
+});
+i++;
+}
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/jQuery v2.2.4.js"></script>
+</head>
+      <body class="fullscreen" onload="setup()">
+
+
+        <section id="serverSketch">
+
+
+
+
+
+
+        </section>
+                <section id="userSketch">
+<span id="input">
+
+
+
+
+</span>
+        </section>
+<section id="gui">
+
+
+
+
+
+
+        </section>
+  <script>
+
+
+
+          /* DATA */
+          var points = {};
+
+    function save(name,content){
+      $.ajax({ url: 'save.php',
+       data: { name : name, content:content},
+       type: 'post',
+        dataType : 'html',
+       success: function(data) {
+   //console.log("php response = "+data); // apple
+   clearInput();
+ }
+});
+    }
+
+    function clearInput(){
+var element = document.getElementById("input");
+element.id="output";
+document.getElementById("serverSketch").appendChild(element);
+var oldElement = document.getElementById("input");
+       var newElement = document.createElement('span');
+       newElement.id = "input";
+       document.getElementById("userSketch").appendChild(newElement);
+       while (oldElement) {
+  oldElement.removeChild(oldElement);
+}
+    }
+          /*Display*/
+          var point = {};
+          var trait = {};
+          var nPoint=0;
+          var nTrait=0;
+          var r=0, v=0, b=0;
+
+          /* ONLOAD */
+          var nPointServer=0;
+          W=40;
+        function load(name){
+      $.ajax({ url: 'load.php',
+       data: { name : name},
+       type: 'get',
+        dataType : 'html',
+       success: function(data) {
+   //console.log("php response = "+data); // apple
+              var element = document.createElement('span');
+              element.innerHTML = data;
+document.getElementById("serverSketch").appendChild(element);
+nPointServer = document.getElementsByClassName('trait').length;
+loading=true;
+setInterval(draw, 17 );
+ }
+});
+    }
+          function setup(){
+            load("data");
+            
+newPoint(100,100,100,255,128,128,"","gui"); 
+            pointeur();
+          }
+          /*frameWork*/
+          var loading=false;
+          var endTrait=false;
+          function pointeur(){
+           _point=document.getElementById("point"+0).style;
+           _point.zIndex = nPoint;
+           if(document.getElementById("point"+0).innerHTML.length>0){
+             _point.width= document.getElementById("point"+0).innerHTML.length*points[0].w*1.315+"px";
+             _point.height = points[0].w*3+"px";
+           }else{
+            _point.width = points[0].w+"px";
+            _point.height = points[0].w+"px";
+          }
+
+          
+          _point.marginTop = points[0].y-points[0].w/9+"px";
+          _point.marginLeft = points[0].x-points[0].w/9+"px";
+          _point.border = points[0].w/8+'px'+' '+"solid"+' '+"pink";
+          _point.backgroundColor = "transparent";
+          _point.fontSize = points[0].w*3+"px";
+          _point=document.getElementById("point"+0);
+          _point.innerHTML = points[0].text;
+          points[0].w=W;
+        }
+        function draw(){
+console.log(nPoint);
+
+          //console.log(endTrait);
+          if(nTrait>0){
+            if(trait[nTrait-1].endTrait==true &&  nTrait>0){
+              for ( var i = trait[nTrait-1].start ; i < trait[nTrait-1].end ; i ++){
+
+                _point=document.getElementById("point"+i).style;
+
+                
+                _point.marginTop = points[i].y+"px";
+                _point.marginLeft = points[i].x+"px";
+                if(point[i].text==undefined){
+
+
+                  _point.height = points[i].w+"px";
+                  _point.width = points[i].w+"px";
+                  _point.backgroundColor = "rgb("+points[i].r+','+points[i].g+','+points[i].b+')';
+
+                }
+                if(point[i].text!=undefined){
+
+                  if(point[i].text==""+"RED" || point[i].text==""+"GREEN" || point[i].text==""+"BLUE"
+|| point[i].text==""+"BLACK"|| point[i].text==""+"WHITE"
+
+                    ){
+
+
+console.log("action");
+
+
+if(point[i].text==""+"RED"){
+                    r=255;
+                    console.log("rouge="+r);
+                    v=128;
+                    b=128;
+                    _point.height = points[i].w+"px";
+                    _point.width = points[i].w+"px";
+                    _point.backgroundColor = "transparent";
+                    }
+
+                    if(point[i].text==""+"BLACK"){
+                    r=0;
+                    console.log("rouge="+r);
+                    v=0;
+                    b=0;
+                    _point.height = points[i].w+"px";
+                    _point.width = points[i].w+"px";
+                    _point.backgroundColor = "transparent";
+                    }
+
+                    if(point[i].text==""+"WHITE"){
+                    r=255;
+                    console.log("rouge="+r);
+                    v=255;
+                    b=255;
+                    _point.height = points[i].w+"px";
+                    _point.width = points[i].w+"px";
+                    _point.backgroundColor = "transparent";
+                    }
+
+
+if(point[i].text==""+"GREEN"){
+                    r=128;
+                    console.log("rouge="+r);
+                    v=255;
+                    b=128;
+                    _point.height = points[i].w+"px";
+                    _point.width = points[i].w+"px";
+                    _point.backgroundColor = "transparent";
+                    }
+
+                    if(point[i].text==""+"BLUE"){
+                    r=128;
+                    console.log("rouge="+r);
+                    v=128;
+                    b=255;
+                    _point.height = points[i].w+"px";
+                    _point.width = points[i].w+"px";
+                    _point.backgroundColor = "transparent";
+                    }
+
+
+
+
+                  }else{
+
+
+                   _point.width= document.getElementById("point"+0).innerHTML.length*points[0].w*1.315+"px";
+                   _point.height = points[0].w*2+"px";
+                   _point.backgroundColor = "transparent";
+                   _point.fontSize = points[i].w*3+"px";
+                   _point=document.getElementById("point"+i);
+                 //console.log(points[i].text);
+                 _point.innerHTML = points[i].text;
+               }
+             }
+
+               points[i].w=W;
+             }
+             if(point[nPoint-1].text!=undefined){
+
+               points[0].text="";
+
+             }if(loading==true){
+             save("data",document.getElementById("input").innerHTML);
+console.log("saved");
+           }
+             trait[nTrait-1].endTrait=false;
+             //console.log(trait[nTrait-1].endTrait);
+           }
+         }
+
+
+
+         var newW =window.innerWidth/90;
+
+
+         if(W!=newW){
+          document.body.scrollLeft=points[0].x/2;
+          document.body.scrollTop=points[0].y/2;
+          W=newW;
+
+
+        }else{
+          if(nTrait>0){
+            trait[0].endTrait=false;
+          }
+        }
+
+
+
+
+
+
+
+      }
+      /*objets*/
+      function newPoint(_x,_y,_w,_r,_g,_b,_text,where){
+       point[nPoint] = document.createElement('div');
+       point[nPoint].id = "point"+nPoint;
+       point[nPoint].className = "trait";
+       document.getElementById(where).appendChild(point[nPoint]);
+       points[nPoint]={mother:nTrait,x:_x,y:_y,w:_w,r:_r,g:_g,b:_b,text:_text};
+       //console.log(points[nPoint].mother);
+       point[nPoint].text=_text;
+       _point=document.getElementById("point"+nPoint).style;
+
+       _point.marginTop = points[nPoint].y+"px";
+       _point.marginLeft = points[nPoint].x+"px";
+       _point.width = points[nPoint].w+"px";
+       _point.height = points[nPoint].w+"px";
+       _point.position = "absolute";
+       _point.backgroundColor = "rgb("+points[nPoint].r+','+points[nPoint].g+','+points[nPoint].b+')';
+       nPoint = document.getElementsByClassName('trait').length-nPointServer;
+     }
+
+     /*mouseEvents*/             
+
+
+     var isMouseDown = false;
+
+
+     document.onmouseup   = function() {
+      for ( var i = 0 ; i < nPoint ; i ++){
+
+        if(points[i].mother==nTrait){
+          if(i!=0){
+            console.log("rouge="+r);
+            points[i].r=r;
+            points[i].g=v;
+            points[i].b=b;
+          }
+
+  //var element = document.getElementById("point"+i);
+//element.parentNode.removeChild(element);
+}
+//nPoint = document.getElementsByClassName('trait').length;
+}
+
+
+if(nTrait>0){
+  trait[nTrait]={start:trait[nTrait-1].end,end:nPoint,endTrait:true};
+}else{
+  trait[nTrait]={start:0,end:nPoint,endTrait:true};
+}
+//console.log("traitstart "+nTrait+" = "+trait[nTrait].start);
+//console.log("traitEnd "+nTrait+" = "+trait[nTrait].end);
+nTrait++;
+isMouseDown = false ;
+
+
+       
+}
+
+document.onmousemove = function(event) { 
+  pointeur();
+  points[0].x=event.x+document.body.scrollLeft;
+  points[0].y=event.y+document.body.scrollTop;
+            //console.log( isMouseDown);
+            if(isMouseDown && points[0].text=="") { 
+              if(nPoint>1){
+                //console.log(points[nPoint-1].x);
+                //console.log("eventX"+event.x);
+
+                if(event.y>points[nPoint-1].y+points[nPoint-1].w/1.5 || event.y<points[nPoint-1].y-points[nPoint-1].w/1.5 || event.x>points[nPoint-1].x+points[nPoint-1].w/1.5 || event.x<points[nPoint-1].x-points[nPoint-1].w/1.5) {
+                  newPoint(event.x+document.body.scrollLeft,event.y+document.body.scrollTop,W,128,128,128,undefined,"input"); 
+
+                }
+
+
+
+              } else{
+
+                newPoint(event.x+document.body.scrollLeft,event.y+document.body.scrollTop,W,128,128,128,undefined,"input");
+              }
+            }
+          };
+          document.onmousedown=function(event){
+
+           isMouseDown = true;
+           if(points[0].text!=undefined) { 
+            if(nPoint>1){
+                //console.log(points[nPoint-1].x);
+                //console.log("eventX"+event.x);
+
+                newPoint(event.x+document.body.scrollLeft,event.y+document.body.scrollTop,W,128,128,128,points[0].text,"input");
+
+
+
+              }
+            }
+          };
+          /*KeyEvents*/
+          document.onkeydown = function(e){
+            e = e || window.event;
+            var key = e.which || e.keyCode;
+          //console.log("key = "+key);
+
+          points[0].text = points[0].text+String.fromCharCode(key);
+
+          pointeur();
+          
+        }
+        document.onkeyup = function(e){
+          e = e || window.event;
+          var key = e.which || e.keyCode;
+          pointeur();
+        }
+  </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!--v230816= dessin -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <script src="js/jQuery v2.2.4.js"></script>
+  <script src="js/por230816"></script>
+  <style>
+  img,iframe{
+    width:100%;
+    height: 100%;
+  }
+  canvas{
+    background-color: red;
+  }
+  .input{
+    color:rgb(72,72,72);
+    background-color: pink;
+  }
+    .input:hover{
+
+background-color: aliceblue;
+  }
+  img:hover{
+border-style: solid;
+border-color: aliceblue;
+border-width: 1px;
+background-color: aliceblue;
+  }
+  #getting{
+    position: fixed;
+  }
+  #sending{
+    position: fixed;
+  }
+    #sketch{
+
+      position: fixed;
+    }
+    #gui{
+      position: fixed;
+    }
+    #preview{
+      position: fixed;
+display: inline-block;
+border-style: solid;
+border-color: lightblue;
+border-width: 1px;
+            opacity: 0.5;
+    }
+    #cmd{
+      position: fixed;
+      
+      opacity: 0.75;
+     padding: 1em;
+      font-size: 2em;
+
+      width: 100%;
+      height: 100%;
+    }
+    ul{
+      margin:0;
+      padding:0;
+    }
+    body,html,section{
+      margin: 0;
+
+
+    }
+    html{
+      font-family: consolas;
+    }
+    body{
+     overflow: hidden;
+     
+   }
+   #dev{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+   }
+   iframe{
+  }
+  textarea{
+font-family: consolas;
+  }
+button {
+  background-color:aliceblue;
+  border:1px solid lightblue;
+  display:inline-block;
+  cursor:pointer;
+  opacity: 0.75
+}
+button:hover {
+  background-color:lavender;
+}
+button:active {
+  position:relative;
+  top:1px;
+}
+</style>
+</head>
+<body onload="setup()">
+  <span id="sending"></span>
+  <span id="getting"></span>
+  <section id="dev"></section>
+  <section id="sketch"></section>
+  <section id="gui">
+  <footer style="margin:25px;position: fixed;display:inline-block;width:800px;bottom: 0;">
+<button  onmousedown="camera(34,true)" onmouseup="camera(34,false)"onmouseout="camera(34,false)"><h1>+zoom</h1></button>
+<button  onmousedown="camera(33,true)" onmouseup="camera(33,false)"onmouseout="camera(33,false)"><h1>-dezoom</h1></button>
+<button  onmousedown="camera(37,true)" onmouseup="camera(37,false)"onmouseout="camera(37,false)"><h1>⇦</h1></button>
+<button  onmousedown="camera(39,true)" onmouseup="camera(39,false)"onmouseout="camera(39,false)"><h1>⇨</h1></button>
+<button  onmousedown="camera(40,true)" onmouseup="camera(40,false)"onmouseout="camera(40,false)"><h1>⇩</h1></button>
+<button  button onmousedown="camera(38,true)" onmouseup="camera(38,false)"onmouseout="camera(38,false)"><h1>⇧</h1></button>
+</footer>
+
+
+
+
+  </section>
+  <script type="text/javascript">
+  
+  </script>
+
+</body>
+</html>

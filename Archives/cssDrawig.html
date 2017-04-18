@@ -1,0 +1,97 @@
+  <!doctype html>
+  <html>
+  <head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <meta name="description" content=" " />
+  <meta name="keywords" content=" " />
+  <script src="js/paper-full.js"></script>
+   <script src="js/jQuery v2.2.4.js"></script>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!--<link rel="stylesheet" type="text/css" href="style.css" />-->
+  <style>
+body,html{
+margin: 0;
+padding: 0;
+width: 100%;
+height: 100%;
+}
+.line{
+  position: absolute;
+  border:solid 5px #000;
+  border-radius: 5px;
+}
+#box{  
+  border:solid 5px #000;
+  border-color:#000 transparent transparent transparent;
+  border-radius: 50%/100px 100px 0 0;
+  background-color: red;
+}
+          </style>
+          </head>
+          <body>
+
+
+
+
+
+          <script>
+          var posX=0;
+          var posY=0;
+          var isMouseDown=false;
+var mouse={x:undefined,y:undefined};
+    document.onmousemove = function(event) { 
+      if ( event.pageX == null && event.clientX != null ) {
+        var doc = document.documentElement, body = document.body;
+        event.pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+        event.pageY = event.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) - (doc   && doc.clientTop  || body && body.clientTop  || 0);
+      }
+      
+      mouse.x=event.pageX;
+      mouse.y=event.pageY;
+if(isMouseDown==true){
+  linedraw(posX,posY,mouse.x,mouse.y);
+    posX=mouse.y;
+  posY=mouse.x;
+}
+
+/////////////////
+//displayCmd();
+
+};
+
+
+
+
+
+document.onmousedown=function(event){
+  isMouseDown = true;
+
+}
+document.onmouseup=function(event){
+
+    isMouseDown = false;
+}
+
+
+function linedraw(ax,ay,bx,by)
+{
+    if(ay>by)
+    {
+        bx=ax+bx;  
+        ax=bx-ax;
+        bx=bx-ax;
+        by=ay+by;  
+        ay=by-ay;  
+        by=by-ay;
+    }
+    var calc=Math.atan((ay-by)/(bx-ax));
+    calc=calc*180/Math.PI;
+    var length=Math.sqrt((ax-bx)*(ax-bx)+(ay-by)*(ay-by));
+    document.body.innerHTML += "<div class='line' style='height:" + length + "px;width:1px;background-color:black;position:absolute;top:" + (ay) + "px;left:" + (ax) + "px;transform:rotate(" + calc + "deg);-ms-transform:rotate(" + calc + "deg);transform-origin:0% 0%;-moz-transform:rotate(" + calc + "deg);-moz-transform-origin:0% 0%;-webkit-transform:rotate(" + calc  + "deg);-webkit-transform-origin:0% 0%;-o-transform:rotate(" + calc + "deg);-o-transform-origin:0% 0%;'></div>"
+}
+
+  </script>
+
+  </body>
+  </html>

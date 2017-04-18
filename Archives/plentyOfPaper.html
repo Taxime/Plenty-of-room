@@ -1,0 +1,394 @@
+  <!doctype html>
+  <html>
+  <head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <meta name="description" content=" " />
+  <meta name="keywords" content=" " />
+  <script src="js/paper-full.js"></script>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!--<link rel="stylesheet" type="text/css" href="style.css" />-->
+  <style>
+
+  body.fullscreen {
+    overflow: hidden; }
+    body.fullscreen article {
+      position: absolute;
+      overflow: hidden;
+      width: auto;
+      padding: 0;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin-bottom: 0; }
+      body.fullscreen article .paperscript {
+        height: 100%;
+        margin-bottom: 0; }
+        body.fullscreen article .canvas,
+        body.fullscreen article canvas[resize] {
+          width: 100%;
+          height: 100%; }
+
+          </style>
+          </head>
+          <body onLoad="setup()" class="fullscreen">
+
+          <article>
+
+
+
+          <canvas resize="true" id="canvas-1" onselectstart="return false" oncontextmenu="return false" ondragstart="return false" onMouseOver="window.status='..message perso .. '; return true;" ></canvas>
+
+
+          </article>
+
+
+
+
+
+          <script>
+
+
+
+
+
+          var loop = setInterval(draw, 17);
+
+
+
+
+
+  //c'est ici 
+
+
+  function getPosition(el) {
+    var xPos = 0;
+    var yPos = 0;
+
+    while (el) {
+      if (el.tagName == "BODY") {
+        // deal with browser quirks with body/window/document and page scroll
+        var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+        var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+        xPos += (el.offsetLeft - xScroll + el.clientLeft);
+        yPos += (el.offsetTop - yScroll + el.clientTop);
+      } else {
+        // for all other non-BODY elements
+        xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+        yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+      }
+
+      el = el.offsetParent;
+    }
+    return {
+      x: xPos,
+      y: yPos
+    };
+  }
+
+
+  function setup() {
+
+
+
+  }
+
+
+  function draw() {
+
+  }
+
+  </script>
+
+  <script type="text/paperscript"  canvas="canvas-1">
+  /*keyboard events*/
+  var keyPress=false;
+  var right=false;
+  var left=false;
+   var up=false;
+  var down=false;
+document.onkeydown = function(e){
+    e = e || window.event;
+    var key = e.which || e.keyCode;
+     console.log(key);
+    if(key===39){
+        right=true;
+    }
+    if(key===37){
+        left=true;
+    }
+    if(key===38){
+        down=true;
+    }
+    if(key===40){
+        up=true;
+    }
+    keyPress=true;
+}
+document.onkeyup = function(e){
+    e = e || window.event;
+    var key = e.which || e.keyCode;
+         console.log(key);
+    if(key===39){
+        right=false;
+    }
+    if(key===37){
+        left=false;
+    }
+    if(key===38){
+       down=false;
+    }
+    if(key===40){
+        up=false;
+    }
+    keyPress=false;
+}
+/*camera events*/
+
+function onFrame(event) {
+
+if(keyPress==true){
+
+  if(mousePressed==true && mouseDragged==false){
+ path.add(event.point);
+}
+}
+
+
+if(right==true){
+var items = project.getItems({
+    name: 'trait',
+});
+
+  for (var i = 0; i < items.length; i++) {
+
+    var posX =items[i].position.x
+    items[i].position.x=posX+10;
+  }
+}
+
+if(left==true){
+var items = project.getItems({
+    name: 'trait',
+});
+  for (var i = 0; i < items.length; i++) {
+
+    var posX =items[i].position.x;
+    items[i].position.x=posX-10;
+  }
+}
+
+
+if(up==true){
+var items = project.getItems({
+    name: 'trait',
+});
+
+  for (var i = 0; i < items.length; i++) {
+
+    var posY =items[i].position.y;
+    items[i].position.y=posY+10;
+  }
+}
+if(down==true){
+var items = project.getItems({
+    name: 'trait',
+});
+  for (var i = 0; i < items.length; i++) {
+
+    var posY =items[i].position.y;
+    items[i].position.y=posY-10;
+  }
+}
+
+
+
+}
+
+  /*mouse Events*/
+  mousePressed=false;
+  mouseDragged=false;
+  function detectLeftButton(evt) {
+    evt =  window.event;
+    if ("buttons" in evt) {
+      return evt.buttons == 1;
+    }
+    var button = evt.which || evt.button;
+    return button == 1;
+  }
+  function onMouseMove(event) {
+
+    pointeur.position = event.point;
+
+    project.activeLayer.selected = false;
+    if (event.item){
+      event.item.selected = true;
+     // console.log(event.item.point);
+   }
+ }
+
+  //var segment, path;
+  //var movePath = false;
+  var hitOptions = {
+    segments: true,
+    stroke: true,
+    fill: true,
+    tolerance: 5
+  };
+
+
+  function onMouseDown(event) {
+    // If we produced a path before, deselect it:
+    if (path) {
+      path.selected = false;
+    }
+
+    // Create a new path and set its stroke color to black:
+    if(detectLeftButton(event)==1){
+      path = new Path({
+
+        segments: [event.point],
+        strokeColor: 'red',
+        strokeWidth: 20,
+        strokeCap: 'round',
+        name: 'trait',
+      // Select the path, so we can see its segment points:
+    });
+mousePressed=true;
+      console.log("Downed");
+    }
+    //modify
+    
+    if(detectLeftButton(event)!=1){
+      segment = path = null;
+      var hitResult = project.hitTest(event.point, hitOptions);
+      if (!hitResult)
+        return;
+
+      if (event.modifiers.shift) {
+        if (hitResult.type == 'segment') {
+          hitResult.segment.remove();
+        };
+        return;
+      }
+
+      if (hitResult) {
+        path = hitResult.item;
+        if (hitResult.type == 'segment') {
+          segment = hitResult.segment;
+        } else if (hitResult.type == 'stroke') {
+          var location = hitResult.location;
+          //segment = path.insert(location.index + 1, event.point);
+          //path.smooth();
+        }
+      }
+      movePath = hitResult.type == 'fill';
+      if (movePath)
+        project.activeLayer.addChild(hitResult.item);
+    }
+  }
+
+  var simplifyTime=false;
+  function onMouseDrag(event) {
+    pointeur.position = event.point;
+    if(detectLeftButton(event)==1){
+      path.add(event.point);
+
+    // Update the content of the text item to show how many
+    // segments it has:
+    textItem.content = 'Segment count: ' + path.segments.length;
+
+    path.smooth({ type: 'continuous' });
+    if(simplifyTime!=true){
+      simplifyTime=true;
+    }
+  }
+
+
+  //modify
+  if(detectLeftButton(event)!=1){
+
+
+    if (segment) {
+      segment.point += event.delta;
+     // path.smooth();
+    } else if (path) {
+      path.position += event.delta;
+    }
+
+
+
+
+  }
+ mouseDragged=true;
+
+  console.log("Dragged");
+
+
+}
+function onMouseUp(event) {
+  if(simplifyTime==true){
+    var segmentCount = path.segments.length;
+
+    // When the mouse is released, simplify it:
+    path.simplify(10);
+    path.strokeColor = 'black';
+    // Select the path, so we can see its segments
+    
+    var newSegmentCount = path.segments.length;
+    var difference = segmentCount - newSegmentCount;
+    var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
+    textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
+    simplifyTime=false;
+
+    console.log("simplify");
+  }
+  mousePressed=false;
+ mouseDragged=false;
+
+}
+/* modify */
+var values = {
+  paths: 50,
+  minPoints: 5,
+  maxPoints: 15,
+  minRadius: 30,
+  maxRadius: 90
+};
+
+var hitOptions = {
+  segments: true,
+  stroke: true,
+  fill: true,
+  tolerance: 5
+};
+
+/* draw */
+var path;
+
+var textItem = new PointText({
+  content: 'Click and drag to draw a line.',
+  point: new Point(20, 30),
+  fillColor: 'black',
+});
+
+
+
+  // While the user drags the mouse, points are added to the path
+  // at the position of the mouse:
+
+
+  // When the mouse is released, we simplify the path:
+
+  /* pointeur */
+  var pointeur = new Path.Circle(new Point(80, 50), 10);
+  pointeur.strokeColor = 'black';
+
+
+
+  </script>
+
+  </body>
+  </html>

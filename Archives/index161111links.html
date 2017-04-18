@@ -1,0 +1,49 @@
+<!-- v161110 : atelier thales -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <link rel="stylesheet" href="lestylescreen.css" type="text/css" />
+</head>
+<body id="doc" onload="setup()">
+  <section id="print"></section>
+  <section id="screen">
+    <span id="sending"></span>
+    <span id="getting"></span>
+
+    <span id ="tempLine">
+    </span>
+    <div id="pointer" class="circleBase type1"></div>
+    <section id="dev"></section>
+
+    <section id="sketch"></section>
+    <!--<div id=overlay></div>-->
+    <section id="gui">
+
+      <footer style="margin:25px;position: fixed;display:inline-block;width:97%;bottom: -24pt;">
+       <div id ="echelle"></div>
+       <!--<div id ="composition"></div>-->
+     </footer>
+
+     <span id ="tempLine">
+     </span>
+
+
+
+
+   </section>
+   <button  id="zoom" onmousedown="camera(34,true)" onmouseup="camera(34,false)"onmouseout="camera(34,false)"><h2 style="font-weight: normal;">+</h2></button>
+   <button id="dezoom" onmousedown="camera(33,true)" onmouseup="camera(33,false)"onmouseout="camera(33,false)"><h2 style="font-weight: normal;">-</h2></button>
+   <button class="bord" id="droit" onmousedown="camera(37,true)" onmouseup="camera(37,false)"onmouseout="camera(37,false)"><h1 style="font-weight: normal;"></h1></button>
+   <button class="bord" id="gauche" onmousedown="camera(39,true)" onmouseup="camera(39,false)"onmouseout="camera(39,false)"><h1 style="font-weight: normal;"></h1></button>
+   <button class="bord" id="haut" onmousedown="camera(40,true);" onmouseup="camera(40,false)"onmouseout="camera(40,false)"><h1 style="font-weight: normal;"></h1></button>
+   <button class="bord" id="bas" button onmousedown="camera(38,true)" onmouseup="camera(38,false)"onmouseout="camera(38,false)"><h1 style="font-weight: normal;"></h1></button>
+ </section>
+   <script src="js/jQuery v2.2.4.js"></script>
+  <script src="js/por161111links.js"></script>
+  <script src="js/d3.js"></script>
+  <script src="js/simplify.js"></script>
+  
+</body>
+</html>

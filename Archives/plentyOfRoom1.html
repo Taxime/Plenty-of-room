@@ -1,0 +1,123 @@
+  <!doctype html>
+  <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Plenty Of Room</title>
+    <style>
+    #sketch{
+      position: absolute;
+    }
+    #gui{
+      position: fixed;
+    }
+    body,html,section{
+      margin: 0;
+      width: 100%;
+    }
+    textarea{
+      background-color: transparent;
+    }
+        </style>
+      </head>
+      <body onload="setup()">
+
+        <section id="sketch">
+
+
+
+
+
+
+        </section>
+        <section id="gui">
+
+
+
+
+
+
+        </section>
+        <script type="text/javascript">
+/*interface*/
+var mouse={x:undefined,y:undefined};
+          /* DATA */
+          var elements=0;
+/////////////////////////////////////////
+function drawCmd(){
+
+  var element=document.getElementById("gui").style;
+element.marginLeft=mouse.x+30+"px";
+element.marginTop=mouse.y+"px";
+}
+
+function drawPreview(){
+
+var elementContent = document.createTextNode(document.getElementById("cmd").value);
+var str =document.getElementById("cmd").value.split(" ").join(' ');
+    document.getElementById("preview").innerHTML=str;
+}
+///////////////////////////////////////
+        function setup(){
+console.log("hello");
+setInterval(draw, 17 );
+//create CMD
+    var preview = document.createElement("span");
+    preview.id = "preview";
+document.getElementById("gui").appendChild(preview);
+    var br = document.createElement("br");
+    document.getElementById("gui").appendChild(br);
+        var cmd = document.createElement("textarea");
+    cmd.id = "cmd";
+    document.getElementById("gui").appendChild(cmd);
+        }
+////////////////////////////////////
+        function draw(){
+        }
+        ////////////////////////////////
+        document.onmousemove = function(event) { 
+mouse.x=event.x;
+mouse.y=event.y;
+/////////////////
+drawCmd();
+          };
+          document.onmousedown=function(event){
+            elements++;
+            var element = document.createElement("span");
+            element.style.position="absolute";
+            element.style.width="100%";
+            element.style.marginLeft=document.getElementById("gui").style.marginLeft;
+element.style.marginTop=document.getElementById("gui").style.marginTop;
+element.id=elements;
+var elementContent = document.createTextNode(document.getElementById("cmd").value);
+var str =document.getElementById("cmd").value.split(" ").join(' ');
+console.log(str);
+    document.getElementById("sketch").appendChild(element);
+    document.getElementById("cmd").value='';
+    document.getElementById(elements).innerHTML=str;
+    drawPreview();
+          }
+          //////////////////////////
+          document.onkeydown = function(e){
+             e = e || window.event;
+            var key = e.which || e.keyCode;
+            console.log(key);
+            if(key != 17){
+        document.getElementById("cmd").focus();
+          }
+          drawPreview();
+        }
+        document.onkeyup = function(e){
+          drawPreview();
+        }
+      </script>
+
+    </body>
+    </html>
+<!--window.onload = function() {
+    try{
+        document.getElementById('myAnchor').focus();
+        console.log(document.getElementById('myAnchor').focus());
+    }catch(err){
+console.log(err);
+    }                    
+}-->

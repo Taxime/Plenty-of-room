@@ -1,0 +1,163 @@
+<!-- v120916 : Print -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Plenty Of Room</title>
+  <script src="js/jQuery v2.2.4.js"></script>
+  <script src="js/por160923denis.js"></script>
+     <script src="js/d3.js"></script>
+   <script src="js/simplify.js"></script>
+    <link rel="stylesheet" href="lestyleprint.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="lestylescreenDenis.css" type="text/css" media="screen" />
+
+</head>
+<body id="doc" onload="setup()">
+  
+<section id="print"></section>
+<section id="screen">
+  <span id="sending"></span>
+  <span id="getting"></span>
+  
+  <span id ="tempLine">
+</span>
+    <div id="pointer" class="circleBase type1"></div>
+      <section id="dev"></section>
+     
+  <section id="sketch"></section>
+  <!--<div id=overlay></div>-->
+  <section id="gui">
+
+  <footer style="margin:25px;position: fixed;display:inline-block;width:97%;bottom: 0;">
+   <div id ="echelle"></div>
+   <div id ="composition"></div>
+</footer>
+
+<span id ="tempLine">
+</span>
+
+
+
+
+  </section>
+
+     <button  id="zoom" onmousedown="camera(34,true)" onmouseup="camera(34,false)"onmouseout="camera(34,false)"><h2 style="font-weight: normal;">+</h2></button>
+<button id="dezoom" onmousedown="camera(33,true)" onmouseup="camera(33,false)"onmouseout="camera(33,false)"><h2 style="font-weight: normal;">-</h2></button>
+ <!--
+<button class="bord" id="droit" onmouseover="camera(37,true)" onmouseup="camera(37,false)"onmouseout="camera(37,false)"><h1 style="font-weight: normal;"></h1></button>
+<button class="bord" id="gauche" onmouseover="camera(39,true)" onmouseup="camera(39,false)"onmouseout="camera(39,false)"><h1 style="font-weight: normal;"></h1></button>
+<button class="bord" id="haut" onmouseover="camera(40,true);" onmouseup="camera(40,false)"onmouseout="camera(40,false)"><h1 style="font-weight: normal;"></h1></button>
+<button class="bord" id="bas" button onmouseover="camera(38,true)" onmouseup="camera(38,false)"onmouseout="camera(38,false)"><h1 style="font-weight: normal;"></h1></button>
+-->
+
+  <script type="text/javascript">
+  
+  </script>
+
+</section>
+<aside style="position: fixed;max-height: 100%;overflow-y:scroll;background-color:white;"><big>
+<ol><blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(0,0,1)">About</font></blue><blue>
+<br><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';"onmousedown="teleport(2191.5860866511644,173.63937331708547,0.543629887960535)">Anry</font></blue><br>
+
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(46.641198346493212,3681.7707570438124,0.1938005955610488)">Ayers</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-2806.6664721269285,-3280.754215236357,0.3245855758525599)">Be-oua</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(16679.803781826497,-12596.982896975698, 0.06290487791075211)">BROWN-METAL</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-13899.534449571707,-21248.744722902655, 0.0690886790288907)">De-loused</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-11372.44219374517,2813.798909542689, 0.1270877127232309)">Des-fleurs</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(130.31447057029396,-10718.257195255555, 0.3097190609280152)">Dreamleague</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(29544.911233720464,42402.42845281579, 0.020418016020596445)">Flat-Minor</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(45328.08400992051,9625.429547008973, 0.16066081907589605)">Fleurs-d'urgence</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-63229.567739012484,60878.907416613074, 0.047480646958122395)">Forest-fire</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-71441.29232456863,18567.959320914764, 0.031136162420234564)">Frmington</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-28793.662900622556,35653.48801481559, 0.07588037253214677)">Funn</font></blue>
+
+<br><blue>
+<font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(57084.15331250973,22334.236526258217,0.295533455083984)">Futebal</font></blue>
+
+<br>
+<blue> <font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-223203.27231413656,-107378.15128545776, 0.004146960800885024)">Garnet-03</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-81666.79425515661,-45765.06952143524, 0.08734002307387718)">Headdress</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(-55711.55186706716,-10719.800244622558, 0.03755867083981721)">Heltah</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(102118.91974017727,339875.91419125244, 0.002719433144215272)">Holie</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(271897.76423249464,-168078.34650849208, 0.008780322192851162)">Hyhyhy</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 258850.95698705528,40879.47830538722,  0.03755867083981721)">Iam</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 189702.43301540834,-30150.16915825029,0.011099843761653256)">I-know-you-are</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 5259.529944358232,-90581.7238946323,0.023501597723524448)">Jejejeje</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 11648.821488750764, -193031.5534540313,0.0690886790288907)">Julie</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( -275132.36011340114,127728.78454281672,0.008780322192851162)">Lal</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 856361.3068452196,-380544.28958829696,0.002476029536644929)">Long-hard-road</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 761592.3045131008,83241.16393341086,0.013389427142325154)">Love-songs</font></blue>
+
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 38147.918017366916,-397481.6996436136,0.009643462985697205)">Lrk</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( -566567.7646357099,-890212.9966201948,0.0008422602796828735)">Luhe</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( -487545.0259430583,5535.189248639916,0.020418016020596445)">Mikki-2ans</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( -466517.4099591844,-365127.024048217,0.047480646958122395)">No-valiue</font></blue><br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( -629734.4525211322,-99626.8688578597,0.019482839714309585)">Paysages</font></blue>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( -93528.49107524325,-280821.3107813823,0.014032119645156762)">Petroleum-Tinged</blue></font>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( -706372.6648774219,-299948.533307525,0.009643462985697205)">QUADRI-FLORIAN</blue></font>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 78313.52165533049,-632788.606385775,0.031136162420234564)">Sorta-hilla</blue></font>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 1419659.960273462,-2183567.8827336016,0.0006357386631162418)">Spring-bitches</blue></font>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( 422765.3061942164,-1021383.7622271754,0.004773245569957077)">Tatouage</blue></font>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(  -259051.01939352078,-286874.5864747573,0.057274559603490566)">Tête-d'affiche</blue></font>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(  -949194.9916705699,-69848.18009832676,0.003957023664966626)">Teuf-train</blue></font>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport( -431339.61060628516,-230662.1464466049,0.012191002802798818)">Tony-sosa</blue></font>
+<br>
+<blue><font style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" onmousedown="teleport(  461571.9193472531,-421240.8006965221,0.006945508375227071)">Vase-mort</blue></font>
+
+</aside>
+
+
+</ol></div>
+
+
+</body>
+</html>
+<!---2852.3512131951707-->
